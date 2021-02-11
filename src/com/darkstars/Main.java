@@ -5,13 +5,18 @@ import com.darkstars.momento.Editor;
 import com.darkstars.momento.History;
 import com.darkstars.state.Brush;
 import com.darkstars.state.Canvas;
+import com.darkstars.stratgy.BWFilter;
+import com.darkstars.stratgy.ImageStorage;
+import com.darkstars.stratgy.JpegCompressor;
+import com.darkstars.stratgy.PngCompressor;
 
 public class Main {
 
     public static void main(String[] args) {
         // momento();
         // state();
-        iterator();
+        //iterator();
+        stratgy();
     }
 
 
@@ -53,5 +58,10 @@ public class Main {
             System.out.println(itr.currrent());
             itr.next();
         }
+    }
+
+    private static void stratgy(){
+        ImageStorage imageStorage = new ImageStorage(new PngCompressor(),new BWFilter());
+        imageStorage.store("abx");
     }
 }
