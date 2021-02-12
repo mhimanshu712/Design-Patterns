@@ -1,5 +1,8 @@
 package com.darkstars;
 
+import com.darkstars.command.AddCustomerCommand;
+import com.darkstars.command.CustomerService;
+import com.darkstars.command.fx.Button;
 import com.darkstars.iterator.BrowseHistory;
 import com.darkstars.momento.Editor;
 import com.darkstars.momento.History;
@@ -15,8 +18,9 @@ public class Main {
     public static void main(String[] args) {
         // momento();
         // state();
-        //iterator();
-        stratgy();
+        // iterator();
+        // stratgy();
+        command();
     }
 
 
@@ -63,5 +67,12 @@ public class Main {
     private static void stratgy(){
         ImageStorage imageStorage = new ImageStorage(new PngCompressor(),new BWFilter());
         imageStorage.store("abx");
+    }
+
+    private static void command(){
+        var service = new CustomerService();
+        var command = new AddCustomerCommand(service);
+        var button = new Button(command);
+        button.click();
     }
 }
