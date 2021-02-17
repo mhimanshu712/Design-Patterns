@@ -1,6 +1,9 @@
 package com.darkstars;
 
 import com.darkstars.command.*;
+import com.darkstars.command.editor.BoldCommand;
+import com.darkstars.command.editor.HtmlDocument;
+import com.darkstars.command.editor.UndoCommand;
 import com.darkstars.command.fx.Button;
 import com.darkstars.iterator.BrowseHistory;
 import com.darkstars.momento.Editor;
@@ -20,7 +23,8 @@ public class Main {
         // iterator();
         // stratgy();
         // command();
-        command2();
+        // command2();
+        command3();
     }
 
 
@@ -81,5 +85,19 @@ public class Main {
         composite.add(new ResizeCommand());
         composite.add(new BlackAndWhiteCommand());
         composite.execute();
+    }
+
+    private static void command3(){
+        var history = new com.darkstars.command.editor.History();
+        var document = new HtmlDocument();
+        document.setContent("Hello Dude");
+
+        var boldCommand = new BoldCommand(document,history);
+        boldCommand.execute();
+        System.out.println(document.getContent());
+
+        var undoCommand = new UndoCommand(history);
+        undoCommand.execute();
+        System.out.println(document.getContent());
     }
 }
