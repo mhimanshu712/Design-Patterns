@@ -8,11 +8,13 @@ import com.darkstars.command.fx.Button;
 import com.darkstars.iterator.BrowseHistory;
 import com.darkstars.momento.Editor;
 import com.darkstars.momento.History;
+import com.darkstars.observer.Chart;
+import com.darkstars.observer.DataSource;
+import com.darkstars.observer.Spreadsheet;
 import com.darkstars.state.Brush;
 import com.darkstars.state.Canvas;
 import com.darkstars.stratgy.BWFilter;
 import com.darkstars.stratgy.ImageStorage;
-import com.darkstars.stratgy.JpegCompressor;
 import com.darkstars.stratgy.PngCompressor;
 
 public class Main {
@@ -24,7 +26,8 @@ public class Main {
         // stratgy();
         // command();
         // command2();
-        command3();
+        // command3();
+        observer();
     }
 
 
@@ -99,5 +102,20 @@ public class Main {
         var undoCommand = new UndoCommand(history);
         undoCommand.execute();
         System.out.println(document.getContent());
+    }
+
+    private static void observer(){
+        var dataSource = new DataSource();
+
+        var sheet1 = new Spreadsheet(dataSource);
+        var sheet2 = new Spreadsheet(dataSource);
+        var chart = new Chart(dataSource);
+
+
+        dataSource.addObserver(sheet1);
+        dataSource.addObserver(sheet2);
+        dataSource.addObserver(chart);
+
+        dataSource.setValue(4);
     }
 }
