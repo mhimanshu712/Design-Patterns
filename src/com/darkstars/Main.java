@@ -1,7 +1,6 @@
 package com.darkstars;
 
-import com.darkstars.command.AddCustomerCommand;
-import com.darkstars.command.CustomerService;
+import com.darkstars.command.*;
 import com.darkstars.command.fx.Button;
 import com.darkstars.iterator.BrowseHistory;
 import com.darkstars.momento.Editor;
@@ -20,7 +19,8 @@ public class Main {
         // state();
         // iterator();
         // stratgy();
-        command();
+        // command();
+        command2();
     }
 
 
@@ -71,8 +71,15 @@ public class Main {
 
     private static void command(){
         var service = new CustomerService();
-        var command = new AddCustomerCommand(service);
+        var command = new RemoveCustomerCommand(service);
         var button = new Button(command);
         button.click();
+    }
+
+    private static void command2(){
+        var composite = new CompositeCommand();
+        composite.add(new ResizeCommand());
+        composite.add(new BlackAndWhiteCommand());
+        composite.execute();
     }
 }
