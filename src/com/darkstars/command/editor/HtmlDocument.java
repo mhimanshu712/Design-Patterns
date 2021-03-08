@@ -1,5 +1,7 @@
 package com.darkstars.command.editor;
 
+import com.darkstars.visitor.HighlightOperation;
+
 public class HtmlDocument {
     private String content;
 
@@ -13,5 +15,8 @@ public class HtmlDocument {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public void execute(HighlightOperation highlightOperation) {
     }
 }

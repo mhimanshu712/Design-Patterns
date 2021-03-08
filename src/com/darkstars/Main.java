@@ -17,6 +17,10 @@ import com.darkstars.state.Canvas;
 import com.darkstars.stratgy.BWFilter;
 import com.darkstars.stratgy.ImageStorage;
 import com.darkstars.stratgy.PngCompressor;
+import com.darkstars.visitor.AnchorNode;
+import com.darkstars.visitor.HeadingNode;
+import com.darkstars.visitor.HighlightOperation;
+import com.darkstars.visitor.PlainTextOperation;
 
 public class Main {
 
@@ -29,7 +33,8 @@ public class Main {
         // command2();
         // command3();
         // observer();
-        chainOfRes();
+        // chainOfRes();
+        visitor();
     }
 
 
@@ -134,5 +139,14 @@ public class Main {
 
         server.handle(new HttpRequest("admin","123"));
 
+    }
+
+    private static void visitor(){
+        var document = new com.darkstars.visitor.HtmlDocument();
+        document.add(new HeadingNode());
+        document.add(new AnchorNode());
+        document.execute(new HighlightOperation());
+        
+        document.execute(new PlainTextOperation());
     }
 }
