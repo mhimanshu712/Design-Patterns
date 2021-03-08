@@ -1,5 +1,6 @@
 package com.darkstars;
 
+import com.darkstars.ChainOfRes.*;
 import com.darkstars.command.*;
 import com.darkstars.command.editor.BoldCommand;
 import com.darkstars.command.editor.HtmlDocument;
@@ -27,7 +28,8 @@ public class Main {
         // command();
         // command2();
         // command3();
-        observer();
+        // observer();
+        chainOfRes();
     }
 
 
@@ -117,5 +119,20 @@ public class Main {
         dataSource.addObserver(chart);
 
         dataSource.setValue(4);
+    }
+
+    private static void mediator(){
+
+    }
+
+    private static void chainOfRes(){
+        // auth -> log -> compress
+        var compressor = new Compressor(null);
+        var logger = new Logger(compressor);
+        var authenticator = new Authenticator(logger);
+        var server = new WebServer(authenticator);
+
+        server.handle(new HttpRequest("admin","123"));
+
     }
 }
